@@ -19,35 +19,42 @@
   <!-- Main Wrapper -->
   <div class="site-wrapper">
 
-    <!-- HEADER SECTION -->
-    <header class="site-header">
-      <div class="header-inner">
-        <!-- Left Header Content -->
-        <div class="header-left">
-          <a href="#" style="text-decoration: none; color: inherit;">Jason Runnells.</a>
-        </div>
-        
-        <!-- Mobile Menu Button -->
-        <button class="hamburger" id="hamburger">&#9776;</button>
-        
-        <!-- Navigation Menu -->
-        <nav class="site-nav" id="site-nav">
-          <a href="#">Home <span class="icon">✦</span></a>
-          <a href="https://jasonrunnells.github.io/portfolio/">Portfolio <span class="icon">✦</span></a>
-          <div class="section-separator-menu"></div>
-          <a href="#about">About</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#skills">Skills</a>
-          <a href="#education">Education</a>
-          <a href="#work">Work History</a>
-          <a href="#volunteer">Volunteer</a>
-          <a href="#languages">Languages</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
 
-    <!-- ABOUT SECTION -->
+<!-- HEADER SECTION -->
+<header class="site-header">
+  <div class="header-inner">
+    <!-- Logo/Name -->
+    <div class="header-brand">
+      <a href="#">Jason Runnells.</a>
+    </div>
+    
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    
+    <!-- Navigation Menu -->
+    <nav class="site-nav" id="site-nav" aria-hidden="true">
+      <a href="#">Home <span class="icon">✦</span></a>
+      <a href="https://jasonrunnells.github.io/portfolio/">Portfolio <span class="icon">✦</span></a>
+      <div class="nav-separator"></div>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#work">Work</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#languages">Languages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+
+
+<!-- ABOUT SECTION -->
     <section id="about" class="split-section split-50-50">
       <!-- Vertical Index Indicator -->
       <div class="vertical-line">
@@ -314,55 +321,90 @@
   </div> <!-- /site-wrapper -->
 
   <!-- JAVASCRIPT -->
-  <script>
-    // ======================
-    // MOBILE MENU FUNCTIONALITY
-    // ======================
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('site-nav');
 
-    // Toggle mobile menu
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('open');
-      hamburger.textContent = nav.classList.contains('open') ? '✕' : '☰';
+
+  <!-- JAVASCRIPT -->
+<script>
+  // ======================
+  // MOBILE NAVIGATION FUNCTIONALITY
+  // ======================
+  const hamburger = document.getElementById('hamburger');
+  const siteNav = document.getElementById('site-nav');
+  const mobileNavOverlay = document.createElement('div');
+  mobileNavOverlay.className = 'mobile-nav-overlay';
+  document.body.appendChild(mobileNavOverlay);
+
+  hamburger.addEventListener('click', () => {
+    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', !isExpanded);
+    siteNav.setAttribute('aria-hidden', isExpanded);
+    mobileNavOverlay.classList.toggle('active', !isExpanded);
+    
+    // Toggle body scroll
+    document.body.style.overflow = isExpanded ? '' : 'hidden';
+  });
+
+  // Close menu when clicking overlay
+  mobileNavOverlay.addEventListener('click', () => {
+    hamburger.setAttribute('aria-expanded', 'false');
+    siteNav.setAttribute('aria-hidden', 'true');
+    mobileNavOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.site-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
+      siteNav.setAttribute('aria-hidden', 'true');
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
     });
+  });
 
-    // ======================
-    // SCROLL REVEAL ANIMATIONS
-    // ======================
-    function observeReveal(selector) {
-      const elements = document.querySelectorAll(selector);
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      elements.forEach(el => observer.observe(el));
-    }
-
-    // Initialize reveal animations
-    observeReveal('.reveal');
-    observeReveal('.reveal2');
-
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.site-nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        hamburger.textContent = '☰';
+  // ======================
+  // SCROLL REVEAL ANIMATIONS
+  // ======================
+  function observeReveal(selector) {
+    const elements = document.querySelectorAll(selector);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
       });
-    });
+    }, { threshold: 0.1 });
+    elements.forEach(el => observer.observe(el));
+  }
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-        nav.classList.remove('open');
-        hamburger.textContent = '☰';
+  // Initialize reveal animations
+  observeReveal('.reveal');
+  observeReveal('.reveal2');
+
+  // ======================
+  // SMOOTH SCROLLING FOR ANCHOR LINKS
+  // ======================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      // Don't interfere with external links
+      if (this.href.includes('jasonrunnells.github.io')) return;
+      
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80, // Adjust for header height
+          behavior: 'smooth'
+        });
       }
     });
-  </script>
+  });
+</script>
 
   <!-- FOOTER -->
   <footer class="site-footer">
