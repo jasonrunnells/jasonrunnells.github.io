@@ -37,9 +37,10 @@
     
     <!-- Navigation Menu -->
     <nav class="site-nav" id="site-nav" aria-hidden="true">
-      <a href="#">Home <span class="icon">✦</span></a>
-      <a href="https://jasonrunnells.github.io/portfolio/">Portfolio <span class="icon">✦</span></a>
+      <a href="#"><span style="font-weight: 700;">Home </span><span class="icon">✦</span></a>
+      <a style="border-bottom: none !important;"   href="https://jasonrunnells.github.io/portfolio/"><span style="font-weight: 700;">Portfolio </span><span class="icon">✦</span></a>
       <div class="nav-separator"></div>
+      
       <a href="#about">About</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#skills">Skills</a>
@@ -48,6 +49,7 @@
       <a href="#volunteer">Volunteer</a>
       <a href="#languages">Languages</a>
       <a href="#contact">Contact</a>
+      
     </nav>
   </div>
 </header>
@@ -83,7 +85,7 @@
     <div class="section-separator-full"></div>
 
     <!-- TESTOMONIALS SECTION -->
-    <section id="education" class="split-section split-100-0">
+    <section id="testimonials" class="split-section split-100-0">
       <div class="vertical-line">
         <span class="text-top">(01)</span>
         <span class="text-bottom">Testimonials</span>
@@ -110,14 +112,14 @@
     <div class="section-separator-full"></div>
 
     <!-- SKILLS SECTION -->
-    <section class="split-section split-100-0">
+    <section id="skills" class="split-section split-100-0">
       <div class="vertical-line">
         <span class="text-top">(02)</span>
         <span class="text-bottom">Skills</span>
       </div>
       <div class="split-inner">
         <div class="split split-left" style="width: 100%;">
-          <section id="skills" class="pill-section">
+          <section class="pill-section">
             <h2 class="reveal">Skills</h2>
             <div class="section-separator"></div>
             <br><br>
@@ -285,14 +287,14 @@
     <div class="section-separator-full"></div>
 
     <!-- CONTACT SECTION -->
-    <section class="split-section split-100-0">
+    <section id="contact" class="split-section split-100-0">
       <div class="vertical-line">
         <span class="text-top">(07)</span>
         <span class="text-bottom">Contact</span>
       </div>
       <div class="split-inner">
         <div class="split split-left" style="width: 100%;">
-          <section id="contact" class="contact-section">
+          <section class="contact-section">
             <h2 class="reveal">Contact.</h2>
             <div class="section-separator"></div>
 
@@ -374,7 +376,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.3 });
     elements.forEach(el => observer.observe(el));
   }
 
