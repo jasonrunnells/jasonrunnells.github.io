@@ -148,7 +148,7 @@ a:hover {
   width: 100%;
   background: #fff;
   z-index: 1000;
-  padding: 0.5rem 0;
+  padding: .5rem 0;
 }
 
 .header-inner {
@@ -178,8 +178,9 @@ a:hover {
   background-color: transparent;
   border: 0;
   margin: 0;
+  margin-top: .6rem;
   overflow: visible;
-  padding: 1rem;
+  padding: 0;
   z-index: 1001;
 }
 
@@ -239,7 +240,6 @@ a:hover {
 /* Navigation Menu */
 
 
-
 .site-nav {
   position: fixed;
   top: 0;
@@ -248,7 +248,7 @@ a:hover {
   max-width: 300px;
   height: 100vh;
   background: #fff;
-  padding: 5rem 2rem 2rem;
+  padding: 3.5rem 1rem 1rem;
   transform: translateX(100%);
   transition: transform 0.3s ease;
   z-index: 1000;
@@ -262,20 +262,18 @@ a:hover {
 
 .site-nav a {
   display: block;
-  padding: 0.75rem 0;
-  font-size: 1.1rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
   border-bottom: 1px solid #eee;
-  font-weight: 400;
-  transition: ease-in-out .3s;
+  font-weight: normal;
+  transition: ease-in-out .4s;
   text-align: left;
-  padding-right: 1rem;
 }
 
 .site-nav a:hover {
   color: #fff;
+  transition: ease-in-out .4s;
   background-color: #131313;
-  padding-left: 1rem;
-  transition: ease-in-out .3s;
 }
 
 
@@ -304,6 +302,8 @@ a:hover {
   opacity: 1;
   pointer-events: auto;
 }
+
+
 /* ======================================
    SPLIT SECTIONS
 ====================================== */
@@ -446,8 +446,33 @@ a:hover {
 }
 
 .button1 .icon {
-  font-size: 1rem;
+  display: inline-block !important;
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+  transition: transform 0.3s ease-in-out !important;
 }
+
+
+/* Target ALL icons in the nav */
+.site-nav .icon {
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: middle !important; 
+  padding-bottom: 1px;    
+  margin-left: 0.25rem; 
+  transition: transform 0.2s ease; 
+}
+
+/* Optional: Rotate icons on hover */
+.site-nav a:hover .icon {
+  transform: rotate(45deg);
+}
+
+
+.button1:hover .icon {
+  transform: rotate(45deg) !important; /* Rotate on hover */
+}
+
 
 .send-button1 {
   display: inline-flex;
