@@ -1002,3 +1002,7 @@ a:hover {
     max-height: 55vw;
   }
 }
+
+[id] {
+  scroll-margin-top: 100px;
+}
