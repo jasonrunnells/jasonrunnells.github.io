@@ -149,6 +149,9 @@ a:hover {
   background: #fff;
   z-index: 1000;
   padding: .5rem 0;
+  background: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  backdrop-filter: blur(50px); /* Blur effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
 }
 
 .header-inner {
