@@ -777,14 +777,14 @@ a:hover {
   background: #fff;
   color: #131313;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
   transition: transform 0.2s ease;
 }
 
