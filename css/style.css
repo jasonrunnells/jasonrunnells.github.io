@@ -804,11 +804,11 @@ img[data-lightbox] {
 
 .image-grid {
   display: grid;
-  background-color: #131313;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
   padding: 1rem;
+  border: solid 1px #eee;
   border-radius: 10px;
   margin-bottom: 4rem;
 }
@@ -817,11 +817,13 @@ img[data-lightbox] {
   width: 100%;
   height: auto;
   display: block;
+  background-color: #fff;
+  padding: 1rem;
+  border: solid 1px #eee;
   border-radius: 10px;
   cursor: pointer;
   object-fit: cover;
   transition: transform 0.3s ease;
-  border-radius: 10px;
 }
 
 .image-grid img:hover {
