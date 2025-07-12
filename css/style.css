@@ -686,7 +686,7 @@ a:hover {
 }
 
 .img-wrapper-fit {
-  height: 500px;
+  height: inherit;
   width: 100%;
   display: flex;
   justify-content: center;
