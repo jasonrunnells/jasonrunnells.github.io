@@ -665,41 +665,58 @@ a:hover {
 /* ======================================
    LIGHTBOX
 ====================================== */
-.lightbox-container {
-  position: relative;
-  display: block;
+
+.img-wrapper {
+  max-height: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img-wrapper img {
   width: 100%;
   height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
   cursor: pointer;
 }
 
-.lightbox-container img {
-  display: block;
+.img-wrapper-fit {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img-wrapper-fit img {
   width: 100%;
   height: auto;
-}
-
-.hover-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.5); 
+  max-height: 500px;
+  object-fit:contain;
+  display: block;
+  cursor: pointer;
   border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  pointer-events: none;
-  color: #fff;                   
-  font-size: 1rem;            
-  font-weight: 700;    
-  text-transform: uppercase;
 }
 
-.lightbox-container:hover .hover-overlay {
-  opacity: 1;
+
+@media (max-width: 900px) {
+.img-wrapper {
+  max-height: 300px;
 }
 
+  .img-wrapper img {
+  height: auto;
+  max-height: 300px;
+}}
+
+/* LIGHTBOX BASE */
 .lightbox {
   display: none;
   opacity: 0;
@@ -709,33 +726,49 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.85);
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 2000;
+  text-align: center;
 }
 
+/* Show when active */
 .lightbox.show {
   display: flex;
   opacity: 1;
 }
 
+/* CONTENT WRAPPER */
 .lightbox-content {
   position: relative;
   max-width: 90%;
   max-height: 90%;
   text-align: center;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* IMAGE */
 .lightbox-content img {
   max-width: 100%;
   max-height: 80vh;
   border-radius: 10px;
   margin-bottom: 0.5rem;
+  object-fit: contain;
 }
 
+/* CAPTION */
 .lightbox-caption {
+  display: inline-block;          /* Needed to center the block inside parent */
+  text-align: left;               /* Paragraphs stay left-aligned */
+  margin: 1rem auto 0;            /* Centered horizontally */
+  color: #fff;
   font-size: 1rem;
+  max-width: 90%;
+  line-height: 1.5;
 }
 
+/* CLOSE BUTTON */
 .lightbox-close {
   position: absolute;
   top: -16px;
@@ -751,63 +784,50 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease;
   border-radius: 50%;
+  transition: transform 0.2s ease;
 }
+
+.lightbox-close:hover {
+  transform: scale(1.1);
+}
+
+/* POINTER CURSOR FOR LIGHTBOX IMAGES */
+img[data-lightbox] {
+  cursor: pointer;
+}
+
 
 /* ======================================
-   GALLERY
+   IMAGE GRID
 ====================================== */
-.gallery-player {
-  text-align: center;
-  max-width: 100%;
-  margin: 0 auto;
+
+.image-grid {
+  display: grid;
+  background-color: #131313;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 10px;
   margin-bottom: 4rem;
-  border: solid 1px #131313;
-  border-radius: 10px;
-  background-color: #fff;
-  padding:0;
 }
 
-.gallery-player-main img {
-  max-height: 800px;
-  max-width: 100%;
-  width: auto;
+.image-grid img {
+  width: 100%;
   height: auto;
+  display: block;
   border-radius: 10px;
-  display: inline-block;
   cursor: pointer;
-  padding: 1rem;
-}
-
-.gallery-player-thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background-color: #f8f8f8;
-  border-top: solid 1px #131313;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-.gallery-player-thumb {
-  width: 80px;
-  height: 80px;
   object-fit: cover;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  border: solid 1px #131313;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
 }
 
-.gallery-player-thumb:hover {
-  opacity: 0.7;
-  transform: scale(1.05);
+.image-grid img:hover {
+  transform: scale(1.03);
 }
+
 
 /* ======================================
    LEAFLET MAP STYLING
