@@ -771,16 +771,17 @@ a:hover {
 /* CLOSE BUTTON */
 .lightbox-close {
   position: absolute;
-  top: -16px;
-  right: -16px;
+  top: -2rem;
+  right: -2rem;
   font-size: 2rem;
-  background: #fff;
-  color: #131313;
-  border: none;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  text-align: center;
+  align-items: center;
+  background: none;
+  color: #fff;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
   cursor: pointer;
   display: flex;
   align-items: center;
