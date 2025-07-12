@@ -771,22 +771,22 @@ a:hover {
 /* CLOSE BUTTON */
 .lightbox-close {
   position: absolute;
-  top: -2rem;
-  right: -2rem;
-  font-size: 2rem;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  text-align: center;
+  top: -3rem;
+  right: 0;
+  border: solid 1px #fff;
+  border-radius: 0;
+  background-color: #131313;
+  font-size: 1.5rem;
+  font-weight: 700;
+  width:35px;
+  height: 35px;
   align-items: center;
-  background: none;
+  padding: .8rem;
+  padding-left: .9rem;
+  justify-content: center;
   color: #fff;
-  width: 30px;
-  height: 30px;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
 }
 
 .lightbox-close:hover {
