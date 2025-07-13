@@ -800,6 +800,18 @@ img[data-lightbox] {
   cursor: pointer;
 }
 
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-icons svg,
+.social-icons .icon-png {
+  height: 30px;
+  display: block;
+}
+
 
 /* ======================================
    IMAGE GRID
